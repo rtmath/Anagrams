@@ -1,24 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Anagram.Object
 {
   public class AnagramClass
   {
-    // public List<string> CheckAnagrams()
-    // {
-    //   List<string> outputList = new List<string> { };
-    //
-    //   Char[] inputWordLetters = _inputWord.ToCharArray();
-    //
-    //   Char[] sortedInputLetters = inputWordLetters.Sort;
-    //
-    //   for(int i = 0; i<_comparisonList.Length; i++)
-    //   {
-    //     string currentWord = _comparisonList[i];
-    //     Char[] currentWordLetters = currentWord.ToCharArray();
-    //   }
-    // }
+    private string _inputWord;
+
+    public AnagramClass(string newInputWord)
+    {
+      _inputWord = newInputWord;
+    }
+
+    public List<string> InputCleanup(string words)
+    {
+      string[] myDelim = { ", " };
+      string[] wordsArray = words.Split(myDelim, StringSplitOptions.None);
+      List<string> wordsList = new List<string>(wordsArray);
+      return wordsList;
+    }
 
     public char[] CharSort(char[] oldArray)
     {
@@ -34,6 +35,42 @@ namespace Anagram.Object
         }
       }
       return oldArray;
+    }
+
+    public bool CheckAnagram(string testWord)
+    {
+      bool matching = true;
+      string inputWord = _inputWord.ToLower();
+      foreach (char letter in testWord)
+      {
+        string letterString = letter.ToString();
+        if (inputWord.Contains(letterString) || letterString == "\'")
+        {
+          Regex regPattern = new Regex(letterString);
+          inputWord = regPattern.Replace(inputWord, "-", 1);
+        }
+        else
+        {
+          matching = false;
+        }
+      }
+      return matching;
+    }
+
+    public List<string> GetMatches(string inputWords)
+    {
+      List<string> cleanWords = InputCleanup(inputWords);
+      List<string> outputWordList = new List<string> { };
+
+      foreach (string word in cleanWords)
+      {
+        string wordLower = word.ToLower();
+        if(CheckAnagram(wordLower))
+        {
+          outputWordList.Add(word);
+        }
+      }
+      return outputWordList;
     }
   }
 }

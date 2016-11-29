@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
-    <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>Anagrams!</title>
+    <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="Content/css/styles.css" type="text/css">
   </head>
   <body>
-
+    <div class="container">
+      <div class="well">
+        <h1>Anagram Checker</h1>
+        <p>
+          Enter a word in the form below and a list of words in the following form, press submit, and see which words are anagrams!
+        </p>
+        <form action="/result" method="get">
+          <div class="form-group">
+            <label for="main-word">Your Word</label>
+            <input type="text" name="user-word" placeholder="Your word here">
+          </div>
+          <div class="form-group">
+            <label for="words-to-check">Words to Check</label>
+            <input type="text" name="words-to-check" placeholder="Word, word, word, word">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        @if (Model != null)
+        {
+          <p>Matches:</p>
+          <ul>
+          @foreach (var word in Model)
+          {
+            <li>@word</li>
+          }
+        </ul>
+        }
+      </div>
+    </div>
   </body>
 </html>

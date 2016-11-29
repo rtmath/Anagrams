@@ -1,14 +1,29 @@
 using Nancy;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Anagram.Object;
 
-namespace EnterNamespaceHere //replace with your desired namespace
+namespace AnagramProgram
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
-      Get["/"] = _ => View["index.cshtml"];
-      //Insert your GETs and POSTs here
+      Get["/"] = _ =>
+      {
+        return View["index.cshtml"];
+      };
+
+      Get["/result"] = _ =>
+      {
+        string userWord = Request.Query["user-word"];
+        string wordsToCheck = Request.Query["words-to-check"];
+
+        AnagramClass mainAnagram = new AnagramClass(userWord);
+        List <string> results = mainAnagram.GetMatches(wordsToCheck);
+
+        return View["index.cshtml", results];
+      };
     }
   }
 }

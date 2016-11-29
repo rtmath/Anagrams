@@ -1,17 +1,36 @@
-Specs for Anagram Program:
+# _Anagrams!_
 
-* Check one word against another
- * Inputs: "beard", "bread"
- * Output: "true"
-* Check one word against multiple words
- * Inputs: "draw", "ward", "Winnie the Pooh"
- * Output: "draw and ward are anagrams"
-* Check one word against partial matches
- * Inputs: "hat", "path"
- * Output: "path" contains "hat"
-* Input will not accept punctuation
- * Inputs: "Wow, check out this mega-rad punctuation!"
- * Output: "Invalid input"
-* Input will accept apostrophes
- * Inputs: "we're", "were"
- * Output: "true"
+**_By Erik and Ryan_**
+
+### _Description_
+
+_This program will allow users to enter a word and a list of words to test against and check for anagrams_
+
+### _Setup_
+
+_Requires Windows_
+
+* _Clone repository from GitHub._
+* _In PowerShell, run ">dnx kestrel" and go to "localhost:5004" in your web browser._
+
+#### _Specs for Anagram Program:_
+
+* _Check one word against another_
+ * _Inputs: "beard", "bread"_
+ * _Output: "Anagrams: 'Bread' "_
+
+* _Check one word against multiple words_
+ * _Inputs: "draw", "ward, Winnie the Pooh"_
+ * _Output: "Anagrams: 'draw', 'ward' "_
+
+* _Check one word against partial matches_
+ * _Inputs: "path", "hat"_
+ * _Output: "Anagrams: 'hat' "_
+
+* _Input will accept apostrophes_
+ * _Inputs: "we're", "were"_
+ * _Output: "Anagrams: 'were' "_
+
+### _Technologies Used_
+
+_C#, Nancy, Razor, Asp.Net, Xunit._
